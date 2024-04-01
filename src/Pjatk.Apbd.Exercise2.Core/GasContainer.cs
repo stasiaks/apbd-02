@@ -5,8 +5,7 @@ public sealed class GasContainer(
     Centimetre depth,
     Kilogram ownWeight,
     int id,
-    Kilogram maxLoad,
-    Bar pressure
+    Kilogram maxLoad
 ) : Container(height, depth, ownWeight, id, maxLoad), IHazardNotifier
 {
     protected override string TypeString => "G";
@@ -15,13 +14,13 @@ public sealed class GasContainer(
     ///  Do uzupełniania samodzielnie podczas ładowania.
     ///  Treść zadania nie oczekuje od kontenera przechowywania wystarczającej ilości informacji aby przeliczać na bieżąco.
     /// </summary>
-    public Bar Pressure { get; set; } = pressure;
+    public Bar Pressure { get; set; } = new Bar(0);
 
     public override void Empty()
     {
         const decimal partToLeave = 0.05m;
-        LoadMass = new Kilogram(LoadMass.Value * partToLeave);
-        Pressure = new Bar(Pressure.Value * partToLeave);
+        LoadMass = (Kilogram)(LoadMass.Value * partToLeave);
+        Pressure = (Bar)(Pressure.Value * partToLeave);
     }
 
     /*

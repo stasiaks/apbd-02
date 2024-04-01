@@ -14,7 +14,7 @@ public abstract class Container
         {
             throw new ArgumentException("Max load cannot be negative", nameof(maxLoad));
         }
-        LoadMass = new Kilogram(0);
+        LoadMass = (Kilogram)0;
         Height = height;
         Depth = depth;
         OwnWeight = ownWeight;
@@ -39,12 +39,12 @@ public abstract class Container
 
     public virtual void Load(Kilogram additionalLoad)
     {
-        var newLoad = new Kilogram(additionalLoad.Value + LoadMass.Value);
+        var newLoad = additionalLoad.Value + LoadMass.Value;
 
-        if (newLoad.Value > MaxLoad.Value)
+        if (newLoad > MaxLoad.Value)
         {
             throw new OverfillException();
         }
-        LoadMass = newLoad;
+        LoadMass = (Kilogram)newLoad;
     }
 }
