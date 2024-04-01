@@ -2,10 +2,11 @@ namespace Pjatk.Apbd.Exercise2.Core;
 
 public sealed class LiquidsContainer(
     Centimetre height,
+    Centimetre depth,
     Kilogram ownWeight,
     int id,
     Kilogram maxLoad
-) : Container(height, ownWeight, id, maxLoad), IHazardNotifier
+) : Container(height, depth, ownWeight, id, maxLoad), IHazardNotifier
 {
     protected override string TypeString => "L";
 

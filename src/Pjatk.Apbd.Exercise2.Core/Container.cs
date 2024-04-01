@@ -2,7 +2,13 @@ namespace Pjatk.Apbd.Exercise2.Core;
 
 public abstract class Container
 {
-    public Container(Centimetre height, Kilogram ownWeight, int id, Kilogram maxLoad)
+    public Container(
+        Centimetre height,
+        Centimetre depth,
+        Kilogram ownWeight,
+        int id,
+        Kilogram maxLoad
+    )
     {
         if (maxLoad.Value < 0)
         {
@@ -10,8 +16,12 @@ public abstract class Container
         }
         LoadMass = new Kilogram(0);
         Height = height;
+        Depth = depth;
         OwnWeight = ownWeight;
         MaxLoad = maxLoad;
+
+        // Kontenery nie będą pilnować swojej unikalności numeracji samodzielnie, to nie ich odpowiedzialność.
+        // Musi to robić klasa odpowiedzialna za ich tworzenie.
         SerialNumber = $"KON-{TypeString}-{id}";
     }
 
@@ -19,8 +29,9 @@ public abstract class Container
 
     public string SerialNumber { get; }
 
-    public Kilogram LoadMass { get; private set; }
+    public Kilogram LoadMass { get; protected set; }
     public Centimetre Height { get; }
+    public Centimetre Depth { get; }
     public Kilogram OwnWeight { get; }
     public Kilogram MaxLoad { get; }
 

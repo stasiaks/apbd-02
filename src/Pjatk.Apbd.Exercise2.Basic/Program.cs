@@ -9,6 +9,7 @@ public static class Program
         // 1. Stworzenie kontenera danego typu
         var liquidContainer = new LiquidsContainer(
             new Centimetre(200),
+            new Centimetre(400),
             new Kilogram(100),
             1,
             new Kilogram(2000)

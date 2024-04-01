@@ -7,3 +7,7 @@ public record Kilogram(decimal Value);
 
 // Zadanie wymagało wszędzie centymetrów, normalnie implementowałbym metry jako jednostkę SI
 public record Centimetre(decimal Value);
+
+public record Bar(decimal Value);
+
+public record Celsius(decimal Value);
