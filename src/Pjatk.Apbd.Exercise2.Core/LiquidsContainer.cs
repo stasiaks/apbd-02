@@ -1,16 +1,20 @@
 namespace Pjatk.Apbd.Exercise2.Core;
 
-public sealed class LiquidsContainer(
-    Centimetre height,
-    Centimetre depth,
-    Kilogram ownWeight,
-    int id,
-    Kilogram maxLoad
-) : Container(height, depth, ownWeight, id, maxLoad), IHazardNotifier
+public sealed class LiquidsContainer : Container, IHazardNotifier
 {
     protected override string TypeString => "L";
 
     private bool hazadrousMaterialsLoaded;
+
+    internal LiquidsContainer(
+        Centimetre height,
+        Centimetre depth,
+        Kilogram ownWeight,
+        int id,
+        Kilogram maxLoad
+    )
+        : base(height, depth, ownWeight, id, maxLoad) { }
+
     public bool HazadrousMaterialsLoaded
     {
         get => hazadrousMaterialsLoaded;

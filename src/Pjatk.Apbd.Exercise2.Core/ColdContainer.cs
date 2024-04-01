@@ -2,7 +2,7 @@ namespace Pjatk.Apbd.Exercise2.Core;
 
 public sealed class ColdContainer : Container
 {
-    public ColdContainer(
+    internal ColdContainer(
         Centimetre height,
         Centimetre depth,
         Kilogram ownWeight,

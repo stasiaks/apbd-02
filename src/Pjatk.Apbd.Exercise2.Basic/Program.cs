@@ -8,31 +8,26 @@ public static class Program
     public static int Main(string[] args)
     {
         // 1. Stworzenie kontenera danego typu
-        var liquidContainer = new LiquidsContainer(
+        var liquidContainer = ContainerFactory.CreateLiquidsContainer(
             new Centimetre(200),
             new Centimetre(400),
             new Kilogram(100),
-            1,
             new Kilogram(2000)
-        )
-        {
-            HazadrousMaterialsLoaded = true
-        };
+        );
+        liquidContainer.HazadrousMaterialsLoaded = true;
         liquidContainer.HazardNotification += (_, n) => Console.Error.WriteLine(n);
 
-        var gasContainer = new GasContainer(
+        var gasContainer = ContainerFactory.CreateGasContainer(
             new Centimetre(200),
             new Centimetre(400),
             new Kilogram(100),
-            1,
             new Kilogram(2000)
         );
 
-        var coldContainer = new ColdContainer(
+        var coldContainer = ContainerFactory.CreateColdContainer(
             new Centimetre(200),
             new Centimetre(400),
             new Kilogram(100),
-            1,
             new Kilogram(2000),
             ColdCargoType.Meat,
             new Celsius(20)
