@@ -51,7 +51,7 @@ public class CargoShip(Knot maxSpeed, int maxContainers, Ton maxLoad)
 
     public void MoveTo(string serialNumber, CargoShip cargoShip)
     {
-        if(_containers.Find(x => x.SerialNumber == serialNumber) is {} container)
+        if (_containers.Find(x => x.SerialNumber == serialNumber) is { } container)
         {
             _containers.Remove(container);
             cargoShip.Load(container);

@@ -37,18 +37,14 @@ public static class Program
             ColdCargoType.Meat,
             new Celsius(20)
         );
-        
+
         // 2. Załadowanie ładunku do danego kontenera
         liquidContainer.Load(new Kilogram(500));
         Debug.Assert(liquidContainer.LoadMass.Value == 500);
 
         // 3. Załadowanie kontenera na statek
 
-        var cargoShip1 = new CargoShip(
-            new Knot(5),
-            10,
-            new Ton(20)
-        );
+        var cargoShip1 = new CargoShip(new Knot(5), 10, new Ton(20));
         cargoShip1.Load(liquidContainer);
         Debug.Assert(cargoShip1.Containers.Count == 1);
 
@@ -71,15 +67,24 @@ public static class Program
         Debug.Assert(cargoShip1.Containers.Single() == liquidContainer);
 
         // 8. Możliwość przeniesienia kontenera między dwoma statkami
-        var cargoShip2 = new CargoShip(
-            new Knot(5),
-            10,
-            new Ton(20)
-        );
+        var cargoShip2 = new CargoShip(new Knot(2), 11, new Ton(70));
 
         cargoShip1.MoveTo(liquidContainer.SerialNumber, cargoShip2);
         Debug.Assert(cargoShip1.Containers.Count == 0);
         Debug.Assert(cargoShip2.Containers.Count == 1);
+
+        // 9. Wypisanie informacji o kontenerze
+
+        Console.WriteLine(SummarySerializer.Summary(liquidContainer));
+        Console.WriteLine(SummarySerializer.Summary(gasContainer));
+        Console.WriteLine(SummarySerializer.Summary(coldContainer));
+
+        // 10. Wypisanie informacji o danym statku i jego ładunku
+
+        cargoShip2.Load(coldContainer);
+
+        Console.WriteLine(SummarySerializer.Summary(cargoShip1));
+        Console.WriteLine(SummarySerializer.Summary(cargoShip2));
 
         return 0;
     }
